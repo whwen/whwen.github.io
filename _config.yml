@@ -3,5 +3,4 @@ plugins:
   - jekyll-remote-theme # add this line to the plugins list if you already have one
 title: "会文同学"
 description: "会文同学的个人博客"
-show_downloads: true
 google_analytics: "会文同学"
