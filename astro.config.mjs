@@ -3,20 +3,27 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-    title: 'Whwen',
-    integrations: [
-      //https://starlight.astro.build/zh-cn/reference/configuration/
-      starlight({
-        title: 'Whwen',
-        components: {
-//           Head: './src/components/MainHead.astro',
-//           Header: './src/components/Nav.astro',
-//           ThemeSelect: './src/components/ThemeToggle.astro',
-        },
-        customCss: [
-          // 你的自定义 CSS 文件的相对路径
-//           './src/styles/global.css',
-        ],
-      }),
-    ],
+	integrations: [
+		starlight({
+			title: 'wHw',
+			social: {
+				github: 'https://github.com/whwen',
+			},
+			sidebar: [
+				{
+					label: '目录',
+					items: [
+						// Each item here is one entry in the navigation menu.
+						// https://diataxis.fr/how-to-guides/
+						{ label: 'Example Guide', slug: 'guides/example' },
+					],
+				},
+				{
+					label: 'Java',
+					// https://diataxis.fr/reference/
+					autogenerate: { directory: 'reference' },
+				},
+			],
+		}),
+	],
 });

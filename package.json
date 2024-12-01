@@ -1,17 +1,17 @@
 {
-  "name": "whwGithubPage",
+  "name": "",
   "type": "module",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.16.16",
     "@astrojs/starlight": "^0.29.2",
-    "typescript": "^5.7.2"
+    "astro": "^4.16.10",
+    "sharp": "^0.32.5"
   }
 }
