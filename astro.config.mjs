@@ -5,7 +5,7 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'wHw',
+			title: 'ᕦωнωᕤ',
 			social: {
 				github: 'https://github.com/whwen',
 			},
@@ -24,6 +24,8 @@ export default defineConfig({
 					autogenerate: { directory: 'reference' },
 				},
 			],
+// 		    是否在页脚展示构建与starlight
+// 			credits: true,
 		}),
 	],
 });
