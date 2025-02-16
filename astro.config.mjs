@@ -21,7 +21,7 @@ export default defineConfig({
 				{
 					label: 'Java',
 					// https://diataxis.fr/reference/
-					autogenerate: { directory: 'reference' },
+					autogenerate: { directory: 'java/' },
 				},
 			],
 // 		    是否在页脚展示构建与starlight
