@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间戳转换工具 - Developer Tools</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="css/timestamp-converter.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="nav-bar">
+            <div id="tools-menu-container"></div>
+            <div class="nav-title">
+                <span class="nav-icon">⏰</span>
+                <span>时间戳转换工具</span>
+            </div>
+        </nav>
+
+        <!-- 工具主体 -->
+        <div class="tool-container">
+            <div class="tool-content">
+                <!-- 当前时间显示 -->
+                <div class="current-time-section">
+                    <div class="current-time-card">
+                        <h3>🕐 当前时间</h3>
+                        <div class="time-display">
+                            <div class="time-item">
+                                <span class="time-label">当前时间戳</span>
+                                <span class="time-value" id="currentTimestamp">-</span>
+                                <button class="btn btn-sm btn-secondary" onclick="copyCurrentTimestamp()">📋 复制</button>
+                            </div>
+                            <div class="time-item">
+                                <span class="time-label">当前日期时间</span>
+                                <span class="time-value" id="currentDateTime">-</span>
+                                <button class="btn btn-sm btn-secondary" onclick="copyCurrentDateTime()">📋 复制</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 左右布局容器 -->
+                <div class="editor-container">
+                    <!-- 左侧：时间戳转日期 -->
+                    <div class="input-section">
+                        <div class="section-header-small">
+                            <h4>🔢 时间戳转日期时间</h4>
+                            <div class="input-actions">
+                                <button class="btn btn-primary btn-compact" onclick="convertTimestampToDate()" title="快捷键: Ctrl+Enter">
+                                    🔄 转换 <span class="shortcut">Ctrl+Enter</span>
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="useCurrentTimestamp()">
+                                    ⏰ 当前时间戳
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="clearTimestampInput()">
+                                    🗑️ 清空
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <div class="timestamp-input-group">
+                                <input 
+                                    type="text" 
+                                    id="timestampInput" 
+                                    class="timestamp-input" 
+                                    placeholder="请输入时间戳，例如：1705467600"
+                                />
+                                <div class="timestamp-unit-selector">
+                                    <label class="radio-label">
+                                        <input type="radio" name="timestampUnit" value="seconds" checked>
+                                        <span>秒 (10位)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="timestampUnit" value="milliseconds">
+                                        <span>毫秒 (13位)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="timestampUnit" value="microseconds">
+                                        <span>微秒 (16位)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="timestampUnit" value="nanoseconds">
+                                        <span>纳秒 (19位)</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="conversion-result">
+                                <div class="result-item">
+                                    <span class="result-label">📅 日期时间</span>
+                                    <span class="result-value" id="timestampToDateResult">-</span>
+                                    <button class="btn btn-sm btn-secondary" onclick="copyTimestampResult()">📋 复制</button>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">🌍 UTC时间</span>
+                                    <span class="result-value" id="timestampToUtcResult">-</span>
+                                    <button class="btn btn-sm btn-secondary" onclick="copyUtcResult()">📋 复制</button>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">📊 相对时间</span>
+                                    <span class="result-value" id="timestampToRelativeResult">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：日期转时间戳 -->
+                    <div class="output-section">
+                        <div class="section-header-small">
+                            <h4>📅 日期时间转时间戳</h4>
+                            <div class="output-actions">
+                                <button class="btn btn-success btn-compact" onclick="convertDateToTimestamp()" title="快捷键: Ctrl+Shift+Enter">
+                                    🔄 转换
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="useCurrentDateTime()">
+                                    📅 当前时间
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="clearDateInput()">
+                                    🗑️ 清空
+                                </button>
+                            </div>
+                        </div>
+                        <div class="output-container">
+                            <div class="datetime-input-group">
+                                <div class="datetime-row">
+                                    <label>日期:</label>
+                                    <input type="date" id="dateInput" class="date-input">
+                                </div>
+                                <div class="datetime-row">
+                                    <label>时间:</label>
+                                    <input type="time" id="timeInput" class="time-input" step="1">
+                                </div>
+                                <div class="datetime-row">
+                                    <label>时区:</label>
+                                    <select id="timezoneSelect" class="timezone-select">
+                                        <option value="local">本地时区</option>
+                                        <option value="UTC">UTC (协调世界时)</option>
+                                        <option value="Asia/Shanghai">Asia/Shanghai (北京时间)</option>
+                                        <option value="America/New_York">America/New_York (纽约时间)</option>
+                                        <option value="Europe/London">Europe/London (伦敦时间)</option>
+                                        <option value="Asia/Tokyo">Asia/Tokyo (东京时间)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="conversion-result">
+                                <div class="result-item">
+                                    <span class="result-label">🔢 时间戳(秒)</span>
+                                    <span class="result-value" id="dateToTimestampSeconds">-</span>
+                                    <button class="btn btn-sm btn-secondary" onclick="copySecondsResult()">📋 复制</button>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">🔢 时间戳(毫秒)</span>
+                                    <span class="result-value" id="dateToTimestampMilliseconds">-</span>
+                                    <button class="btn btn-sm btn-secondary" onclick="copyMillisecondsResult()">📋 复制</button>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">🔢 时间戳(微秒)</span>
+                                    <span class="result-value" id="dateToTimestampMicroseconds">-</span>
+                                    <button class="btn btn-sm btn-secondary" onclick="copyMicrosecondsResult()">📋 复制</button>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">🔢 时间戳(纳秒)</span>
+                                    <span class="result-value" id="dateToTimestampNanoseconds">-</span>
+                                    <button class="btn btn-sm btn-secondary" onclick="copyNanosecondsResult()">📋 复制</button>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">📊 格式化时间</span>
+                                    <span class="result-value" id="dateToFormattedResult">-</span>
+                                    <button class="btn btn-sm btn-secondary" onclick="copyFormattedResult()">📋 复制</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 消息提示 -->
+                <div id="messageContainer" class="message-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="js/timestamp-converter.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 格式化工具 - Developer Tools</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="css/json-formatter.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="nav-bar">
+            <div id="tools-menu-container"></div>
+            <div class="nav-title">
+                <span class="nav-icon">📝</span>
+                <span>JSON 格式化工具</span>
+            </div>
+        </nav>
+
+        <!-- 工具主体 -->
+        <div class="tool-container">
+            <div class="tool-content">
+                <!-- 左右布局容器 -->
+                <div class="editor-container">
+                    <!-- 左侧输入区域 -->
+                    <div class="input-section">
+                        <div class="section-header-small">
+                            <div class="input-actions">
+                                <button class="btn btn-primary btn-compact" onclick="formatJSON()" title="快捷键: Ctrl+Enter">
+                                    🎨 格式化 <span class="shortcut">Ctrl+Enter</span>
+                                </button>
+                                <button class="btn btn-success btn-compact" onclick="validateJSON()" title="快捷键: Ctrl+Shift+V">
+                                    ✅ 验证
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="pasteFromClipboard()">
+                                    📋 粘贴
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="loadSample()">
+                                    📄 示例数据
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="clearInput()">
+                                    🗑️ 清空
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <textarea 
+                                id="jsonInput" 
+                                class="json-input" 
+                                placeholder='请输入您的 JSON 数据，例如：&#10;{&#10;  "name": "张三",&#10;  "age": 25,&#10;  "skills": ["JavaScript", "Python", "Java"]&#10;}'
+                            ></textarea>
+                            <div class="input-stats">
+                                <span id="inputCharCount">0 字符</span>
+                                <span id="inputLineCount">0 行</span>
+                                <span id="inputSize">0 KB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧输出区域 -->
+                    <div class="output-section">
+                        <div class="section-header-small">
+                            <div class="output-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="toggleTreeView()">
+                                    🌳 树形视图
+                                </button>
+                                <button class="btn btn-secondary btn-compact" onclick="minifyJSON()" title="快捷键: Ctrl+M">
+                                    📦 压缩
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="copyOutput()">
+                                    📋 复制结果
+                                </button>
+                                <button class="btn btn-secondary btn-compact" onclick="sortKeys()" title="快捷键: Ctrl+Shift+S">
+                                    🔤 排序键名
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="clearOutput()">
+                                    🗑️ 清空
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="downloadJSON()">
+                                    💾 下载文件
+                                </button>
+                            </div>
+                        </div>
+                        <div class="output-container">
+                            <!-- 文本输出 -->
+                            <textarea 
+                                id="jsonOutput" 
+                                class="json-output" 
+                                readonly
+                                placeholder="格式化后的 JSON 将显示在这里..."
+                            ></textarea>
+                            <!-- 树形视图输出 -->
+                            <div id="jsonTreeView" class="json-tree-view" style="display: none;">
+                                <div class="tree-placeholder">格式化后的 JSON 树形视图将显示在这里...</div>
+                            </div>
+                            <div class="output-stats">
+                                <span id="outputCharCount">字符：0</span>
+                                <span id="outputLineCount">行：0</span>
+                                <span id="outputSize">大小：0 KB</span>
+                                <span id="jsonDepth">嵌套深度：0</span>
+                                <span id="keyCount">键数量：0</span>
+                                <span id="valueCount">值数量：0</span>
+                                <span id="compressionRatio">压缩比：0%</span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 消息提示 -->
+                <div id="messageContainer" class="message-container">
+                    <div id="message" class="message"></div>
+                </div>
+
+                
+
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="js/json-formatter.js"></script>
+</body>
+</html>

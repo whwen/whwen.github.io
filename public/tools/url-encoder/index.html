@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL 编码/解码工具 - Developer Tools</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="css/url-encoder.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="nav-bar">
+            <div id="tools-menu-container"></div>
+            <div class="nav-title">
+                <span class="nav-icon">🔗</span>
+                <span>URL 编码/解码工具</span>
+            </div>
+        </nav>
+
+        <!-- 工具主体 -->
+        <div class="tool-container">
+            <div class="tool-content">
+                <!-- 左右布局容器 -->
+                <div class="editor-container">
+                    <!-- 左侧输入区域 -->
+                    <div class="input-section">
+                        <div class="section-header-small">
+                            <div class="input-actions">
+                                <button class="btn btn-primary btn-compact" onclick="encodeURL()" title="快捷键: Ctrl+Enter">
+                                    🔒 编码 <span class="shortcut">Ctrl+Enter</span>
+                                </button>
+                                <button class="btn btn-success btn-compact" onclick="decodeURL()" title="快捷键: Ctrl+Shift+D">
+                                    🔓 解码
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="pasteFromClipboard()">
+                                    📋 粘贴
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="loadSample()">
+                                    📄 示例数据
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="clearInput()">
+                                    🗑️ 清空
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <textarea 
+                                id="urlInput" 
+                                class="url-input" 
+                                placeholder='请输入需要编码或解码的URL，例如：&#10;https://example.com/search?q=中文查询&type=文档&#10;&#10;或已编码的URL：&#10;https://example.com/search?q=%E4%B8%AD%E6%96%87%E6%9F%A5%E8%AF%A2&type=%E6%96%87%E6%A1%A3'
+                            ></textarea>
+                            <div class="input-stats">
+                                <span id="inputCharCount">0 字符</span>
+                                <span id="inputLineCount">0 行</span>
+                                <span id="inputSize">0 KB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧输出区域 -->
+                    <div class="output-section">
+                        <div class="section-header-small">
+                            <div class="output-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="swapContent()">
+                                    🔄 交换内容
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="copyOutput()">
+                                    📋 复制结果
+                                </button>
+                                <button class="btn btn-secondary btn-compact" onclick="validateURL()" title="验证URL格式">
+                                    ✅ 验证URL
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="clearOutput()">
+                                    🗑️ 清空
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="downloadResult()">
+                                    💾 下载文件
+                                </button>
+                            </div>
+                        </div>
+                        <div class="output-container">
+                            <textarea 
+                                id="urlOutput" 
+                                class="url-output" 
+                                readonly
+                                placeholder="编码或解码后的URL将显示在这里..."
+                            ></textarea>
+                            <div class="output-stats">
+                                <span id="outputCharCount">0 字符</span>
+                                <span id="outputLineCount">0 行</span>
+                                <span id="outputSize">0 KB</span>
+                                <!-- URL统计信息 -->
+                                <span class="url-stat">
+                                    <span class="stat-icon-inline">🌐</span>
+                                    <span id="urlProtocol">-</span> 协议
+                                </span>
+                                <span class="url-stat">
+                                    <span class="stat-icon-inline">🏠</span>
+                                    <span id="urlDomain">-</span> 域名
+                                </span>
+                                <span class="url-stat">
+                                    <span class="stat-icon-inline">📁</span>
+                                    <span id="urlPath">-</span> 路径
+                                </span>
+                                <span class="url-stat">
+                                    <span class="stat-icon-inline">❓</span>
+                                    <span id="urlParams">0</span> 参数
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 消息提示 -->
+                <div id="messageContainer" class="message-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="js/url-encoder.js"></script>
+</body>
+</html>

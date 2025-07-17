@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发者工具集合 - Developer Tools</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🛠️ 开发者工具集合</h1>
+            <p>现代化的在线开发工具，提升您的工作效率</p>
+        </div>
+
+        <div class="tools-grid">
+            <div class="tool-card" onclick="navigateToTool('json-formatter')">
+                <div class="tool-header">
+                    <div class="tool-icon">📝</div>
+                    <h2 class="tool-title">JSON 格式化工具</h2>
+                </div>
+                <p class="tool-description">格式化、压缩和验证JSON数据，支持语法高亮和错误检测</p>
+                <div class="tool-features">
+                    <span class="feature-tag">格式化</span>
+                    <span class="feature-tag">压缩</span>
+                    <span class="feature-tag">验证</span>
+                </div>
+            </div>
+
+            <div class="tool-card" onclick="navigateToTool('url-encoder')">
+                <div class="tool-header">
+                    <div class="tool-icon">🔗</div>
+                    <h2 class="tool-title">URL 编码/解码</h2>
+                </div>
+                <p class="tool-description">URL编码解码工具，处理特殊字符和中文编码</p>
+                <div class="tool-features">
+                    <span class="feature-tag">编码</span>
+                    <span class="feature-tag">解码</span>
+                    <span class="feature-tag">验证</span>
+                </div>
+            </div>
+
+            <div class="tool-card" onclick="navigateToTool('timestamp-converter')">
+                <div class="tool-header">
+                    <div class="tool-icon">⏰</div>
+                    <h2 class="tool-title">时间戳转换</h2>
+                </div>
+                <p class="tool-description">Unix时间戳与日期时间互转工具</p>
+                <div class="tool-features">
+                    <span class="feature-tag">秒级</span>
+                    <span class="feature-tag">毫秒级</span>
+                    <span class="feature-tag">微秒级</span>
+                    <span class="feature-tag">纳秒级</span>
+                </div>
+            </div>
+
+            <div class="tool-card coming-soon">
+                <div class="tool-header">
+                    <div class="tool-icon">🔐</div>
+                    <h2 class="tool-title">Base64 编码/解码</h2>
+                </div>
+                <p class="tool-description">Base64编码解码工具，支持文本和文件处理</p>
+                <div class="coming-soon-badge">即将推出</div>
+            </div>
+
+            <div class="tool-card coming-soon">
+                <div class="tool-header">
+                    <div class="tool-icon">🎨</div>
+                    <h2 class="tool-title">颜色转换工具</h2>
+                </div>
+                <p class="tool-description">RGB、HEX、HSL等颜色格式互转工具</p>
+                <div class="coming-soon-badge">即将推出</div>
+            </div>
+
+            <div class="tool-card coming-soon">
+                <div class="tool-header">
+                    <div class="tool-icon">🔤</div>
+                    <h2 class="tool-title">文本处理工具</h2>
+                </div>
+                <p class="tool-description">大小写转换、去重、排序等文本处理功能</p>
+                <div class="coming-soon-badge">即将推出</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

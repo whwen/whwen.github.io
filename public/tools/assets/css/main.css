@@ -1,0 +1,435 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 基础样式 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* 容器样式 */
+.container {
+    max-width: 1820px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* 头部样式 */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.header h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.header p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* 工具网格布局 */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* 工具卡片样式 */
+.tool-card {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-out;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    color: white;
+}
+
+.tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+
+.tool-card:hover::before {
+    left: 100%;
+}
+
+.tool-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+}
+
+/* 即将推出的工具卡片 */
+.tool-card.coming-soon {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.tool-card.coming-soon:hover {
+    transform: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* 工具头部 */
+.tool-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-radius: 20px;
+}
+
+.tool-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 24px;
+    color: white;
+}
+
+.tool-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* 工具描述 */
+.tool-description {
+    color: rgba(208, 208, 208, 0.9);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* 功能标签 */
+.tool-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.feature-tag {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* 即将推出徽章 */
+.coming-soon-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ffc107;
+    color: #333;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* 浮动形状背景 */
+.floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.shape {
+    position: absolute;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.shape:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.shape:nth-child(3) {
+    width: 60px;
+    height: 60px;
+    top: 80%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+/* 动画定义 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .tool-card {
+        padding: 20px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .header p {
+        font-size: 1rem;
+    }
+    
+    .tool-title {
+        font-size: 1.3rem;
+    }
+    
+    .tool-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+/* 工具页面头部样式 */
+.tool-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 2rem;
+}
+
+/* 工具导航横铺样式 */
+.tools-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    /* transform: translateY(-2px); */
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item .nav-icon {
+    font-size: 1rem;
+}
+
+.nav-item .nav-text {
+    font-weight: 500;
+}
+
+/* 更多菜单样式 */
+.nav-more {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.more-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.more-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.more-button .arrow {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.nav-more.active .more-button .arrow {
+    transform: rotate(180deg);
+}
+
+.more-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-top: 0.5rem;
+}
+
+.nav-more.active .more-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.more-dropdown .nav-item {
+    background: transparent;
+    border: none;
+    color: #333;
+    margin: 0.25rem;
+    border-radius: 8px;
+    text-shadow: none;
+}
+
+.more-dropdown .nav-item:hover {
+    background: rgba(138, 43, 226, 0.1);
+    color: #8a2be2;
+    transform: none;
+}
+
+.more-dropdown .nav-item:first-child {
+    margin-top: 0.5rem;
+}
+
+.more-dropdown .nav-item:last-child {
+    margin-bottom: 0.5rem;
+}
+
+.tool-title-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
