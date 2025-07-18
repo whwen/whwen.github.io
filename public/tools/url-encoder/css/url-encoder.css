@@ -75,7 +75,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    min-height: 750px;
+    min-height: 800px;
 }
 
 /* 区域头部样式 */
@@ -131,7 +131,7 @@
 /* 文本区域样式 */
 .url-input, .url-output {
     width: 100%;
-    min-height: 810px;
+    min-height: 800px;
     padding: 10px;
     border: 2px solid #e1e5e9;
     border-radius: 12px;
