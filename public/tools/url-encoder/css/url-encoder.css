@@ -75,7 +75,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    min-height: 785px;
+    min-height: calc(100vh - 200px);
 }
 
 /* 区域头部样式 */
@@ -131,7 +131,7 @@
 /* 文本区域样式 */
 .url-input, .url-output {
     width: 100%;
-    min-height: 785px;
+    min-height: calc(100vh - 220px);
     padding: 10px;
     border: 2px solid #e1e5e9;
     border-radius: 12px;
@@ -467,5 +467,37 @@
     .input-stats, .output-stats {
         flex-direction: column;
         gap: 8px;
+    }
+}
+/* 响应式设计 - 媒体查询 */
+@media screen and (max-height: 800px) {
+    .editor-container {
+        min-height: calc(100vh - 150px);
+    }
+    
+    .url-input, .url-output {
+        min-height: calc(100vh - 170px);
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .editor-container {
+        min-height: calc(100vh - 120px);
+    }
+    
+    .url-input, .url-output {
+        min-height: calc(100vh - 140px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .editor-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        min-height: auto;
+    }
+    
+    .url-input, .url-output {
+        min-height: 300px;
     }
 }
